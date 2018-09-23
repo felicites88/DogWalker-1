@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAL\CachorroDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
     <Compile Include="DAL\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -161,9 +162,17 @@
     <Compile Include="Migrations\201809181403221_InitialCreate.Designer.cs">
       <DependentUpon>201809181403221_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809231808108_QualquerCoisa.cs" />
+    <Compile Include="Migrations\201809231808108_QualquerCoisa.Designer.cs">
+      <DependentUpon>201809231808108_QualquerCoisa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809231850583_kkkkkkkjj.cs" />
+    <Compile Include="Migrations\201809231850583_kkkkkkkjj.Designer.cs">
+      <DependentUpon>201809231850583_kkkkkkkjj.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cachorro.cs" />
-    <Compile Include="Models\Context.cs" />
+    <Compile Include="App_Data\Context.cs" />
     <Compile Include="Models\Passeio.cs" />
     <Compile Include="Models\Solicitacao.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -182,6 +191,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Imagens\CachorroSemImagem.png" />
+    <Content Include="Imagens\semimagem.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -246,11 +257,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Usuario\Cadastrar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\CadastrarCachorro.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Imagens\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
@@ -265,6 +274,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809181403221_InitialCreate.resx">
       <DependentUpon>201809181403221_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231808108_QualquerCoisa.resx">
+      <DependentUpon>201809231808108_QualquerCoisa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231850583_kkkkkkkjj.resx">
+      <DependentUpon>201809231850583_kkkkkkkjj.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -22,6 +22,7 @@ namespace DogWalker.Controllers
             Usuario _usuario = UsuarioDAO.Autenticar(usuario);
             if(_usuario != null)
             {
+                Session["usuarioId"] = usuario.UsuarioId;
                 return RedirectToAction("Index", "Home", usuario);
             }  
             return RedirectToAction("Login", "Usuario", usuario);

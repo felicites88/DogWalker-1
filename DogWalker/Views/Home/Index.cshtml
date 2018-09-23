@@ -7,15 +7,18 @@
 <h2>Meus cães</h2>
 
 <div class="row" style="margin-top:30px">
-    @foreach (Cachorro cachorro in Model.Cachorros)
+    @if (ViewBag.Cachorros != null)
     {
-        <div class="col-sm-3" style="text-align:center; margin-bottom:30px">
-            <img class="img-thumbnail" src="~/Images/@cachorro.ImagemUri" style="width:200px;height:150px;margin-bottom:15px" /><br />
-            @cachorro.Nome<br />
-            @Html.ActionLink("Editar", "EditarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Deletar", "DeletarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
-        </div>
+        foreach (Cachorro cachorro in ViewBag.Cachorros)
+        {
+            <div class="col-sm-3" style="text-align:center; margin-bottom:30px">
+                <img class="img-thumbnail" src="~/Imagens/@cachorro.ImagemUri" style="width:200px;height:150px;margin-bottom:15px" /><br />
+                @cachorro.Nome<br />
+                @Html.ActionLink("Editar", "EditarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Deletar", "DeletarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
+            </div>
+        }
     }
-    @Html.ActionLink("Cadastrar um Cachorro", "CadastrarCachorro", "Home", null , new { @class = "btn btn-primary" })
+    @Html.ActionLink("Cadastrar um Cachorro", "CadastrarCachorro", "Home", null, new { @class = "btn btn-primary" })
 
 </div>

@@ -7,10 +7,10 @@ namespace DogWalker.DAL
     public class UsuarioDAO
     {
         private static Context context = SingletonContext.GetInstance();
-        
+
         public static bool Salvar(Usuario usuario)
         {
-            if (Buscar(usuario) == null)
+            if (BuscarPorEmail(usuario.Email) == null)
             {
                 context.Usuarios.Add(usuario);
                 context.SaveChanges();
@@ -19,14 +19,14 @@ namespace DogWalker.DAL
             return false;
         }
 
-        public static Usuario Buscar(Usuario usuario)
+        public static Usuario Buscar(int id)
         {
-            return context.Usuarios.FirstOrDefault(x => x.Email.Equals(usuario.Email));
+            return context.Usuarios.Find(id);
         }
 
         public static Usuario Autenticar(Usuario usuario)
         {
-            return context.Usuarios.FirstOrDefault(x => x.Email.Equals(usuario.Email) && x.Senha.Equals(usuario.Senha)); 
+            return context.Usuarios.FirstOrDefault(x => x.Email.Equals(usuario.Email) && x.Senha.Equals(usuario.Senha));
         }
 
         public static void Deletar(Usuario usuario)
@@ -38,6 +38,10 @@ namespace DogWalker.DAL
         {
             context.Entry(usuario).State = EntityState.Modified;
             context.SaveChanges();
+        }
+        public static Usuario BuscarPorEmail(string email)
+        {
+            return context.Usuarios.FirstOrDefault(x => x.Email.Equals(email, System.StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }

@@ -13,5 +13,6 @@ namespace DogWalker.Models
         public string Porte { get; set; }
         public DateTime Nascimento { get; set; }
         public string ImagemUri { get; set; }
+        public int UsuarioId { get; set; }
     }
 }
