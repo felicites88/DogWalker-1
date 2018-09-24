@@ -22,8 +22,8 @@ namespace DogWalker.Controllers
             Usuario _usuario = UsuarioDAO.Autenticar(usuario);
             if(_usuario != null)
             {
-                Session["usuarioId"] = usuario.UsuarioId;
-                return RedirectToAction("Index", "Home", usuario);
+                Session["usuarioId"] = _usuario.UsuarioId;
+                return RedirectToAction("Index", "Home");
             }  
             return RedirectToAction("Login", "Usuario", usuario);
         }
@@ -61,6 +61,14 @@ namespace DogWalker.Controllers
                 }  
             }
             return View(usuario);
+        }
+
+        public ActionResult AdicionarAmigo(int id)
+        {
+            Usuario usuario = UsuarioDAO.Buscar(Int32.Parse(Session["usuarioId"].ToString()));
+            usuario.Amigos.Add(UsuarioDAO.Buscar(id));
+            UsuarioDAO.Editar(usuario);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

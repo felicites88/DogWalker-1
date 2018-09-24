@@ -1,4 +1,5 @@
 ﻿using DogWalker.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -42,6 +43,11 @@ namespace DogWalker.DAL
         public static Usuario BuscarPorEmail(string email)
         {
             return context.Usuarios.FirstOrDefault(x => x.Email.Equals(email, System.StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public static List<Usuario> Listar(int id)
+        {
+            return context.Usuarios.Where(x => x.UsuarioId != id).ToList();
         }
     }
 }

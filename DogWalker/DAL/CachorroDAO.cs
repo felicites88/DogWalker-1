@@ -17,14 +17,15 @@ namespace DogWalker.DAL
                 context.SaveChanges();
         }
 
-        public static Cachorro Buscar(Cachorro cachorro)
+        public static Cachorro Buscar(int CachorroId)
         {
-            return context.Cachorros.Find(cachorro);
+            return context.Cachorros.Find(CachorroId);
         }
 
         public static void Deletar(Cachorro cachorro)
         {
             context.Cachorros.Remove(cachorro);
+            context.SaveChanges();
         }
 
         public static void Editar(Cachorro cachorro)

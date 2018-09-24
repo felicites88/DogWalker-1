@@ -4,21 +4,85 @@
     ViewBag.Title = "Index";
 }
 
+@Model.Nome
 <h2>Meus cães</h2>
-
 <div class="row" style="margin-top:30px">
-    @if (ViewBag.Cachorros != null)
-    {
-        foreach (Cachorro cachorro in ViewBag.Cachorros)
+    <table class="table table-hover table-striped"
+           style="margin-top:30px">
+        <tr>
+            <th>Nome</th>
+            <th>Porte</th>
+            <th>Raça</th>
+            <th>Data de Nascimento</th>
+            <th>Foto</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (ViewBag.Cachorros != null)
         {
-            <div class="col-sm-3" style="text-align:center; margin-bottom:30px">
-                <img class="img-thumbnail" src="~/Imagens/@cachorro.ImagemUri" style="width:200px;height:150px;margin-bottom:15px" /><br />
-                @cachorro.Nome<br />
-                @Html.ActionLink("Editar", "EditarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
-                @Html.ActionLink("Deletar", "DeletarCachorro", "Home", new { id = cachorro.CachorroId }, new { @class = "btn btn-success" })
-            </div>
-        }
-    }
-    @Html.ActionLink("Cadastrar um Cachorro", "CadastrarCachorro", "Home", null, new { @class = "btn btn-primary" })
+            foreach (Cachorro cachorro in ViewBag.Cachorros)
+            {
+                <tr>
+                    <td>@cachorro.Nome</td>
+                    <td>@cachorro.Porte</td>
+                    <td>@cachorro.Raca</td>
+                    <td>@cachorro.Nascimento</td>
 
+                    <td>
+                        <img src="~/Imagens/@cachorro.ImagemUri"
+                             alt="Imagem do Cachorro"
+                             style="width:100px;height:100px" />
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", "Cachorro", new { id = cachorro.CachorroId }, new { @class = "btn btn-primary" })
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Remover", "Remover", "Cachorro", new { id = cachorro.CachorroId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        }
+
+        @Html.ActionLink("Cadastrar um Cachorro", "Cadastrar", "Cachorro", null, new { @class = "btn btn-primary" })
+    </table>
+</div>
+
+<h2>Meus amigos</h2>
+<div class="row" style="margin-top:30px">
+    <div class="row" style="margin-top:30px">
+        <table class="table table-hover table-striped"
+               style="margin-top:30px">
+            <tr>
+                <th>Nome</th>
+                <th>Preço do Passeio</th>
+                <th>Biografia</th>
+                <th>Foto</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @if (Model.Amigos != null)
+            {
+                foreach (Usuario usuario in Model.Amigos)
+                {
+                    <tr>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.PrecoPasseio</td>
+                        <td>@usuario.Biografia</td>
+                        <td>
+                            <img src="~/Imagens/@usuario.ImagemUri"
+                                 alt="Imagem do Amigo"
+                                 style="width:100px;height:100px" />
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Remover", "Remover", "Cachorro", new { id = usuario.UsuarioId }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
 </div>

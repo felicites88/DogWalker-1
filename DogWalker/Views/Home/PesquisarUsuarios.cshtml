@@ -1,0 +1,43 @@
+﻿@using DogWalker.Models
+@model List<Usuario>
+@{
+    ViewBag.Title = "PesquisarUsuario";
+}
+
+<h2>Pesquisar Usuarios</h2>
+
+<div class="row" style="margin-top:30px">
+    <table class="table table-hover table-striped"
+           style="margin-top:30px">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Biografia</th>
+            <th>Preço do Passeio</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Foto</th>
+        </tr>
+            @foreach (Usuario usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Nascimento</td>
+                    <td>@usuario.Biografia</td>
+                    <td>@usuario.PrecoPasseio</td>
+                    <td>@usuario.Cidade</td>
+                    <td>@usuario.Estado</td>
+                    <td>
+                        <img src="~/Imagens/@usuario.ImagemUri"
+                             alt="Imagem do Cachorro"
+                             style="width:100px;height:100px" />
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Adicionar", "AdicionarAmigo", "Usuario", new { id = usuario.UsuarioId }, new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+

@@ -150,6 +150,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CachorroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DAL\CachorroDAO.cs" />
@@ -169,6 +170,10 @@
     <Compile Include="Migrations\201809231850583_kkkkkkkjj.cs" />
     <Compile Include="Migrations\201809231850583_kkkkkkkjj.Designer.cs">
       <DependentUpon>201809231850583_kkkkkkkjj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241931197_kkkkkkjj.cs" />
+    <Compile Include="Migrations\201809241931197_kkkkkkjj.Designer.cs">
+      <DependentUpon>201809241931197_kkkkkkjj.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cachorro.cs" />
@@ -257,7 +262,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Usuario\Cadastrar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\CadastrarCachorro.cshtml" />
+    <Content Include="Views\Cachorro\Cadastrar.cshtml" />
+    <Content Include="Views\Cachorro\Editar.cshtml" />
+    <Content Include="Views\Home\PesquisarUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -280,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809231850583_kkkkkkkjj.resx">
       <DependentUpon>201809231850583_kkkkkkkjj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241931197_kkkkkkjj.resx">
+      <DependentUpon>201809241931197_kkkkkkjj.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

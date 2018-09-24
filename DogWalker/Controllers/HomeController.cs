@@ -14,36 +14,14 @@ namespace DogWalker.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            Usuario usuarioLogado = UsuarioDAO.Buscar(Int32.Parse(Session["UsuarioId"].ToString()));
             ViewBag.Cachorros = CachorroDAO.BuscarPorDono(Int32.Parse(Session["UsuarioId"].ToString()));
-            return View(UsuarioDAO.Buscar(Int32.Parse(Session["UsuarioId"].ToString())));
+            return View(usuarioLogado);
         }
 
-        public ActionResult CadastrarCachorro()
+        public ActionResult PesquisarUsuarios()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CadastrarCachorro(Cachorro cachorro, HttpPostedFileBase ImagemUri)
-        {
-            if (ModelState.IsValid)
-            {
-                if (ImagemUri != null)
-                {
-                    string nomeImagem = Path.GetFileName(ImagemUri.FileName);
-                    string caminho = Path.Combine(Server.MapPath("~/Imagens/"), nomeImagem);
-                    ImagemUri.SaveAs(caminho);
-                    cachorro.ImagemUri = nomeImagem;
-                }
-                else
-                {
-                    cachorro.ImagemUri = "CachorroSemImagem.png";
-                }
-                cachorro.UsuarioId = Int32.Parse(Session["UsuarioId"].ToString());
-                CachorroDAO.Salvar(cachorro);
-                return RedirectToAction("Index", "Home");
-            }
-            return View(cachorro);
+            return View(UsuarioDAO.Listar(Int32.Parse(Session["usuarioId"].ToString())));
         }
     }
 }
