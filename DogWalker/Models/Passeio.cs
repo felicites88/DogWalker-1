@@ -8,10 +8,10 @@ namespace DogWalker.Models
     public class Passeio
     {
         public int PasseioId { get; set; }
-        public Usuario Passeador { get; set; }
-        public Cachorro Cachorro { get; set; }
+        public int PasseadorId { get; set; }
+        public int ClienteId { get; set; }
         public double Preco { get; set; }
         public DateTime Data { get; set; }
-
+        public bool Status { get; set; }
     }
 }

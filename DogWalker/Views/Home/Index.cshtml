@@ -1,4 +1,5 @@
-﻿@using DogWalker.Models
+﻿@using DogWalker.DAL
+@using DogWalker.Models
 @model Usuario
 @{
     ViewBag.Title = "Index";
@@ -63,24 +64,48 @@
                 <th></th>
                 <th></th>
             </tr>
-            @if (Model.Amigos != null)
+            @if (ViewBag.Amizades != null)
             {
-                foreach (Usuario usuario in Model.Amigos)
+                foreach (Amizade amizade in ViewBag.Amizades)
                 {
-                    <tr>
-                        <td>@usuario.Nome</td>
-                        <td>@usuario.PrecoPasseio</td>
-                        <td>@usuario.Biografia</td>
-                        <td>
-                            <img src="~/Imagens/@usuario.ImagemUri"
-                                 alt="Imagem do Amigo"
-                                 style="width:100px;height:100px" />
-                        </td>
+                    if (amizade.Usuario1Id != Int32.Parse(Session["UsuarioId"].ToString()))
+                    {
+                        Usuario usuario = UsuarioDAO.Buscar(amizade.Usuario1Id);
+                        <tr>
+                            <td>@usuario.Nome</td>
+                            <td>@usuario.PrecoPasseio</td>
+                            <td>@usuario.Biografia</td>
+                            <td>
+                                <img src="~/Imagens/@usuario.ImagemUri"
+                                     alt="Imagem do Amigo"
+                                     style="width:100px;height:100px" />
+                            </td>
 
-                        <td>
-                            @Html.ActionLink("Remover", "Remover", "Cachorro", new { id = usuario.UsuarioId }, new { @class = "btn btn-danger" })
-                        </td>
-                    </tr>
+                            <td>
+                                @Html.ActionLink("Remover", "RemoverAmigo", "Usuario", new { id = usuario.UsuarioId }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        Usuario usuario = UsuarioDAO.Buscar(amizade.Usuario2Id);
+                        <tr>
+                            <td>@usuario.Nome</td>
+                            <td>@usuario.PrecoPasseio</td>
+                            <td>@usuario.Biografia</td>
+                            <td>
+                                <img src="~/Imagens/@usuario.ImagemUri"
+                                     alt="Imagem do Amigo"
+                                     style="width:100px;height:100px" />
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Solicitar Passeio", "SolicitarPasseio", "Cachorro", new { id = usuario.UsuarioId }, new { @class = "btn btn-info" })
+                                @Html.ActionLink("Remover", "ExcluirAmigo", "Usuario", new { id = usuario.UsuarioId }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+
                 }
             }
         </table>

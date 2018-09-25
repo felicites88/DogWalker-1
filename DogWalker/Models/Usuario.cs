@@ -63,7 +63,6 @@ namespace DogWalker.Models
 
         [Display(Name = "Foto do Perfil")]
         public string ImagemUri { get; set; }
-        public List<Solicitacao> Solicitacoes { get; set; }
-        public List<Usuario> Amigos { get; set; }
+        
     }
 }

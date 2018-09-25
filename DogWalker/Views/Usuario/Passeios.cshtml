@@ -1,0 +1,67 @@
+﻿@using DogWalker.Models
+@using DogWalker.DAL
+@model List<Passeio>
+@{
+    ViewBag.Title = "SolicitacoesPasseio";
+}
+
+<h2>Meus Passeios</h2>
+
+<div class="row" style="margin-top:30px">
+    <table class="table table-hover table-striped"
+           style="margin-top:30px">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Biografia</th>
+            <th>Foto</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (Passeio passeio in Model)
+            {
+                if (passeio.ClienteId == Int32.Parse(Session["UsuarioId"].ToString()))
+                {
+                    Usuario usuario = UsuarioDAO.Buscar(passeio.PasseadorId);
+                    <tr>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.Nascimento</td>
+                        <td>@usuario.Biografia</td>
+                        <td>
+                            <img src="~/Imagens/@usuario.ImagemUri"
+                                 alt="Imagem do Usuario"
+                                 style="width:100px;height:100px" />
+                        </td>
+
+                        @if (passeio.Status == false)
+                        {
+                            <td>
+                                @Html.ActionLink("Aceitar", "AceitarPasseio", "Usuario", new { id = passeio.PasseioId }, new { @class = "btn btn-primary" })
+                            </td>
+                        }
+                        @Html.ActionLink("Remover", "RemoverPasseio", new { id = passeio.PasseioId }, new { @class = "btn btn-danger" })
+                    </tr>
+                }
+                else
+                {
+                    Usuario usuario = UsuarioDAO.Buscar(passeio.ClienteId);
+                    <tr>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.Nascimento</td>
+                        <td>@usuario.Biografia</td>
+                        <td>
+                            <img src="~/Imagens/@usuario.ImagemUri"
+                                 alt="Imagem do Usuario"
+                                 style="width:100px;height:100px" />
+                        </td>
+                        @Html.ActionLink("Remover", "RemoverPasseio", new { id = passeio.PasseioId }, new { @class = "btn btn-danger" })
+                    </tr>
+                }
+
+            }
+
+        }
+    </table>
+</div>

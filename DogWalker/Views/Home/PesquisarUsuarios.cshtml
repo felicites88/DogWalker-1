@@ -17,27 +17,28 @@
             <th>Cidade</th>
             <th>Estado</th>
             <th>Foto</th>
+            <th></th>
         </tr>
-            @foreach (Usuario usuario in Model)
-            {
-                <tr>
-                    <td>@usuario.Nome</td>
-                    <td>@usuario.Nascimento</td>
-                    <td>@usuario.Biografia</td>
-                    <td>@usuario.PrecoPasseio</td>
-                    <td>@usuario.Cidade</td>
-                    <td>@usuario.Estado</td>
-                    <td>
-                        <img src="~/Imagens/@usuario.ImagemUri"
-                             alt="Imagem do Cachorro"
-                             style="width:100px;height:100px" />
-                    </td>
+        @foreach (Usuario usuario in Model)
+        {
+            <tr>
+                <td> @usuario.Nome </td>
+                <td> @usuario.Nascimento </td>
+                <td> @usuario.Biografia </td>
+                <td> @usuario.PrecoPasseio </td>
+                <td> @usuario.Cidade </td>
+                <td> @usuario.Estado </td>
+                <td>
+                    <img src="~/Imagens/@usuario.ImagemUri"
+                         alt="Imagem do Cachorro"
+                         style="width:100px;height:100px" />
+                </td>
 
-                    <td>
-                        @Html.ActionLink("Adicionar", "AdicionarAmigo", "Usuario", new { id = usuario.UsuarioId }, new { @class = "btn btn-info" })
-                    </td>
-                </tr>
-            }
+                <td>
+                    @Html.ActionLink("Adicionar", "AdicionarAmigo", "Usuario", new { id = usuario.UsuarioId }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
     </table>
 </div>
 

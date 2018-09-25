@@ -88,6 +88,9 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +99,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -150,11 +159,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CachorroApiController.cs" />
     <Compile Include="Controllers\CachorroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioApiController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAL\AmizadeDAO.cs" />
     <Compile Include="DAL\CachorroDAO.cs" />
+    <Compile Include="DAL\PasseioDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
+    <Compile Include="DAL\SolicitacaoDAO.cs" />
     <Compile Include="DAL\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,7 +190,20 @@
     <Compile Include="Migrations\201809241931197_kkkkkkjj.Designer.cs">
       <DependentUpon>201809241931197_kkkkkkjj.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809250053303_socorr.cs" />
+    <Compile Include="Migrations\201809250053303_socorr.Designer.cs">
+      <DependentUpon>201809250053303_socorr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250212073_MESALVADELS.cs" />
+    <Compile Include="Migrations\201809250212073_MESALVADELS.Designer.cs">
+      <DependentUpon>201809250212073_MESALVADELS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251311504_LUL.cs" />
+    <Compile Include="Migrations\201809251311504_LUL.Designer.cs">
+      <DependentUpon>201809251311504_LUL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Amizade.cs" />
     <Compile Include="Models\Cachorro.cs" />
     <Compile Include="App_Data\Context.cs" />
     <Compile Include="Models\Passeio.cs" />
@@ -265,6 +293,9 @@
     <Content Include="Views\Cachorro\Cadastrar.cshtml" />
     <Content Include="Views\Cachorro\Editar.cshtml" />
     <Content Include="Views\Home\PesquisarUsuarios.cshtml" />
+    <Content Include="Views\Usuario\Solicitacoes.cshtml" />
+    <Content Include="Views\Cachorro\SolicitarPasseio.cshtml" />
+    <Content Include="Views\Usuario\Passeios.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -290,6 +321,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809241931197_kkkkkkjj.resx">
       <DependentUpon>201809241931197_kkkkkkjj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250053303_socorr.resx">
+      <DependentUpon>201809250053303_socorr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250212073_MESALVADELS.resx">
+      <DependentUpon>201809250212073_MESALVADELS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251311504_LUL.resx">
+      <DependentUpon>201809251311504_LUL.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

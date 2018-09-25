@@ -20,11 +20,11 @@ namespace DogWalker.Controllers
         public ActionResult Login(Usuario usuario)
         {
             Usuario _usuario = UsuarioDAO.Autenticar(usuario);
-            if(_usuario != null)
+            if (_usuario != null)
             {
                 Session["usuarioId"] = _usuario.UsuarioId;
                 return RedirectToAction("Index", "Home");
-            }  
+            }
             return RedirectToAction("Login", "Usuario", usuario);
         }
 
@@ -58,16 +58,58 @@ namespace DogWalker.Controllers
                 {
                     ModelState.AddModelError("", "Usuário já cadastrado!");
                     return View(usuario);
-                }  
+                }
             }
             return View(usuario);
         }
 
         public ActionResult AdicionarAmigo(int id)
         {
-            Usuario usuario = UsuarioDAO.Buscar(Int32.Parse(Session["usuarioId"].ToString()));
-            usuario.Amigos.Add(UsuarioDAO.Buscar(id));
-            UsuarioDAO.Editar(usuario);
+            Usuario amigo = UsuarioDAO.Buscar(id);
+            Solicitacao solicitacao = new Solicitacao();
+            solicitacao.RemetenteId = Int32.Parse(Session["usuarioId"].ToString());
+            solicitacao.DestinatarioId = id;
+            if (SolicitacaoDAO.Salvar(solicitacao))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError("", "Solicitação ja enviada");
+            return RedirectToAction("PesquisarUsuarios", "Home");
+        }
+
+        public ActionResult Solicitacoes()
+        {
+            return View(SolicitacaoDAO.Listar(Int32.Parse(Session["usuarioId"].ToString())));
+        }
+
+        public ActionResult AceitarSolicitacao(int id)
+        {
+            Solicitacao solicitacao = SolicitacaoDAO.Buscar(id);
+            Usuario amigo = UsuarioDAO.Buscar(solicitacao.RemetenteId);
+            Usuario usuario = UsuarioDAO.Buscar(solicitacao.DestinatarioId);
+            Amizade amizade = new Amizade();
+            amizade.Usuario1Id = usuario.UsuarioId;
+            amizade.Usuario2Id = amigo.UsuarioId;
+            AmizadeDAO.Salvar(amizade);
+            SolicitacaoDAO.Deletar(solicitacao);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["UsuarioId"] = null;
+            return RedirectToAction("Login", "Usuario");
+        }
+
+        public ActionResult Passeios()
+        {
+            List<Passeio> passeios = PasseioDAO.Listar(Int32.Parse(Session["UsuarioId"].ToString()));
+            return View(passeios);
+        }
+
+        public ActionResult ExcluirAmigo(int id)
+        {
+            AmizadeDAO.Excluir(AmizadeDAO.Buscar(id, Int32.Parse(Session["UsuarioId"].ToString())));
             return RedirectToAction("Index", "Home");
         }
     }

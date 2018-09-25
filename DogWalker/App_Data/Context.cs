@@ -13,5 +13,7 @@ namespace DogWalker.Models
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Cachorro> Cachorros { get; set; }
         public DbSet<Passeio> Passeios { get; set; }
+        public DbSet<Solicitacao> Solicitacoes { get; set; }
+        public DbSet<Amizade> Amizades { get; set; }
     }
 }

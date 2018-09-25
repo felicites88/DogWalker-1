@@ -76,5 +76,23 @@ namespace DogWalker.Controllers
             CachorroDAO.Deletar(CachorroDAO.Buscar(id));
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult SolicitarPasseio(int id)
+        {
+            ViewBag.Cachorros = CachorroDAO.BuscarPorDono(id);
+            return View(UsuarioDAO.Buscar(id));
+        }
+
+        public ActionResult ConfirmarPasseio(Usuario usuario, DateTime data)
+        {
+            Passeio passeio = new Passeio();
+            passeio.Data = data;
+            passeio.ClienteId = usuario.UsuarioId;
+            passeio.PasseadorId = Int32.Parse(Session["UsuarioId"].ToString());
+            passeio.Preco = usuario.PrecoPasseio;
+            passeio.Status = false;
+            PasseioDAO.Salvar(passeio);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

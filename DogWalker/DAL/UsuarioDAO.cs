@@ -49,5 +49,10 @@ namespace DogWalker.DAL
         {
             return context.Usuarios.Where(x => x.UsuarioId != id).ToList();
         }
+
+        public static List<Usuario> ListarTodos()
+        {
+            return context.Usuarios.ToList();
+        }
     }
 }

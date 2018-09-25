@@ -8,8 +8,7 @@ namespace DogWalker.Models
     public class Solicitacao
     {
         public int SolicitacaoId { get; set; }
-        public Usuario Remetente { get; set; }
-        public Usuario Destinatario { get; set; }
-        public string Mensagem { get; set; }
+        public int RemetenteId { get; set; }
+        public int DestinatarioId { get; set; }
     }
 }

@@ -12,19 +12,31 @@
 <body>
 
     @if (Session["UsuarioId"] != null)
-            {
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })
-            <ul class="navbar-nav ml-auto">
-                    @Html.ActionLink("Solicitações", "Solicitacoes", "Home", new { @class = "nav-link" })
-                    @Html.ActionLink("Pesquisar Usuários", "PesquisarUsuarios", "Home", new { @class = "nav-link" })
+    {
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" style="margin-left:10px">
+                @Html.ActionLink("Pesquisar Usuários", "PesquisarUsuarios", "Home", new { @class = "nav-link" })
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" style="margin-left:10px">
+                @Html.ActionLink("Solicitações", "Solicitacoes", "Usuario", new { @class = "nav-link" })
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" style="margin-left:10px">
+                @Html.ActionLink("Logout", "Logout", "Usuario", null, new { @class = "nav-link" })
+            </li>
+        </ul>
 
-
-                <li class="nav-item active" style="margin-left:10px">
-                    @Html.ActionLink("Logout", "Logout", "Usuario", null, new { @class = "nav-link" })
-                </li>
-            </ul>
-        </nav>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" style="margin-left:10px">
+                @Html.ActionLink("Meus Passeios", "Passeios", "Usuario", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </nav>
     }
 
 
